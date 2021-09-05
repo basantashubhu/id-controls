@@ -1,4 +1,8 @@
+import diseases from '../data/diseases.json'
+import {Link} from "react-router-dom";
+
 const Home = () => {
+    console.log(diseases)
     return <main>
         <section className="py-5 text-center container">
             <div className="row py-lg-5">
@@ -9,7 +13,7 @@ const Home = () => {
                         entirely.</p>
                     <p>
                         <a href="#" className="btn btn-primary my-2">Know More</a> &nbsp;
-                        <a href="#" className="btn btn-warning my-2">File a case</a>
+                        <a href="#" className="btn btn-warning my-2">Report a case</a>
                     </p>
                 </div>
             </div>
@@ -17,195 +21,25 @@ const Home = () => {
         <div className="album py-5 bg-light">
             <div className="container">
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+                    {diseases?.data?.map(({disease, outbreak_start, disease_code, images, desc : {agent_text}}) => (
+                        <div className="col" key={disease_code}>
+                            <div className="card shadow-sm">
+                                {images?.filter((img, i) => i === 0).map(({url, alt_text}, i) => (
+                                    <img key={i} src={url} alt={alt_text}/>
+                                ))}
+                                <div className="card-body">
+                                    <h4>{disease}</h4>
+                                    <p className="card-text" dangerouslySetInnerHTML={{__html: agent_text}}/>
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <div className="btn-group">
+                                            <Link to={'/disease/' + disease_code} className="btn btn-sm btn-secondary">Read more</Link>
+                                        </div>
+                                        <small className="text-muted">{outbreak_start}</small>
                                     </div>
-                                    <small className="text-muted">9 mins</small>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card shadow-sm">
-                            <svg className="bd-placeholder-img card-img-top" width="100%" height={225}
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                            <div className="card-body">
-                                <p className="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small className="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
-import {auth} from '../firebase'
+import {auth, db} from '../firebase'
+import firebase from "firebase";
 
 export const UserContext = createContext(null);
 
@@ -9,9 +10,13 @@ export function useAuth() {
 
 export function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState()
+    const [profile, setProfile] = useState({})
     const [loading, setLoading] = useState(false)
     const signUp = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password);
+    }
+    const addProfile = (data) => {
+        setProfile(data);
     }
     const logout = () => {
         return auth.signOut()
@@ -26,11 +31,26 @@ export function AuthProvider({children}) {
         return auth.onAuthStateChanged(user => {
             setCurrentUser(user);
             setLoading(false);
+            if (Object.keys(profile).length && user) {
+                const {serverTimestamp} = firebase.firestore.FieldValue
+                db.collection('users').add({
+                    uid : user.uid,
+                    ...profile,
+                    createdAt : serverTimestamp()
+                }).catch(error => {
+                    console.log({error})
+                })
+                setProfile({})
+            } else if(user) {
+                db.collection('users').where('uid', '==', user.uid).onSnapshot(querySnapShot => {
+                    querySnapShot.docs.map(x => setProfile(x.data()))
+                })
+            }
         })
     }, []);
     const value = {
-        currentUser,
-        signUp,
+        currentUser, profile,
+        signUp, addProfile,
         logout,
         login,
         resetPassword

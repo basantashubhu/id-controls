@@ -4,8 +4,8 @@ import {Link, useHistory} from "react-router-dom";
 
 const SignUp = () => {
     const history = useHistory()
-    const {signUp} = useAuth()
-    const [credential, setCredential] = useState({email: '', password: '', cpassword: ''})
+    const {signUp, addProfile} = useAuth()
+    const [credential, setCredential] = useState({email: '', password: '', cpassword: '', first_name : '', last_name : ''})
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const handleChange = (e) => {
@@ -19,6 +19,10 @@ const SignUp = () => {
         try {
             setError('');
             setLoading(true);
+            addProfile({
+                first_name : credential.first_name,
+                last_name : credential.last_name
+            })
             await signUp(credential.email, credential.password);
             history.push('/')
         } catch (e) {
@@ -36,6 +40,16 @@ const SignUp = () => {
                             <h2 className="text-center mb-4">Sign Up</h2>
                             {error && <div className="alert alert-danger">{error}</div>}
                             <form onSubmit={handleSignUp}>
+                                <div className="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" name="first_name" className="form-control" value={credential.first_name}
+                                           onChange={handleChange} required/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" name="last_name" className="form-control" value={credential.last_name}
+                                           onChange={handleChange} required/>
+                                </div>
                                 <div className="form-group">
                                     <label>Email</label>
                                     <input type="email" name="email" className="form-control" value={credential.email}

@@ -1,10 +1,10 @@
 import {useState} from "react";
 import {useAuth} from "../contexts/UserContext";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Login = () => {
     const history = useHistory()
-    const {login, currentUser} = useAuth()
+    const {login} = useAuth()
     const [credential, setCredential] = useState({email: '', password: ''})
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
