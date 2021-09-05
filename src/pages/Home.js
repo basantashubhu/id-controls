@@ -8,9 +8,8 @@ const Home = () => {
             <div className="row py-lg-5">
                 <div className="col-lg-6 col-md-8 mx-auto">
                     <h1 className="fw-light">What are infectious diseases?</h1>
-                    <p className="lead text-muted">Something short and leading about the collection below—its contents,
-                        the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
-                        entirely.</p>
+                    <p className="lead text-muted">Infectious diseases are disorders caused by organisms — such as bacteria, viruses, fungi or parasites. Many organisms live in and on our bodies. They're normally harmless or even helpful. But under certain conditions, some organisms may cause disease.</p>
+                    <p className="lead text-muted">Some infectious diseases can be passed from person to person. Some are transmitted by insects or other animals. And you may get others by consuming contaminated food or water or being exposed to organisms in the environment.</p>
                     <p>
                         <a href="#" className="btn btn-primary my-2">Know More</a> &nbsp;
                         <a href="#" className="btn btn-warning my-2">Report a case</a>
