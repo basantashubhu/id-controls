@@ -1,6 +1,8 @@
 import {useState} from "react";
 import {useAuth} from "../contexts/UserContext";
 import {Link, useHistory} from "react-router-dom";
+import firebase from "firebase";
+import {db} from "../firebase";
 
 const SignUp = () => {
     const history = useHistory()
@@ -10,6 +12,14 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false)
     const handleChange = (e) => {
         setCredential({...credential, [e.target.name]: e.target.value})
+    }
+    const saveProfile = async (doc, {first_name, last_name}) => {
+        const {serverTimestamp} = firebase.firestore.FieldValue
+        await db.collection('users').add({
+            uid: doc.user.uid,
+            first_name, last_name,
+            createdAt: serverTimestamp()
+        })
     }
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -23,12 +33,13 @@ const SignUp = () => {
                 first_name : credential.first_name,
                 last_name : credential.last_name
             })
-            await signUp(credential.email, credential.password);
+            const doc = await signUp(credential.email, credential.password);
+            await saveProfile(doc, credential)
+            setLoading(false)
             history.push('/')
         } catch (e) {
-            setError('Failed to create an account');
-        } finally {
             setLoading(false)
+            setError('Failed to create an account ' + e.message);
         }
     }
     return <>

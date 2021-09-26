@@ -8,6 +8,9 @@ import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
 import Disease from "../pages/Disease";
 import Footer from "./Footer";
+import Report from "../pages/Report";
+import Resources from "../pages/Resources";
+import Contact from "../pages/Contact";
 
 function App() {
     return (
@@ -21,6 +24,9 @@ function App() {
                         <Route path={'/sign-up'} component={SignUp} />
                         <Route path={'/login'} component={Login} />
                         <Route path={'/forgot-password'} component={ForgotPassword} />
+                        <Route path={'/health-resources'} component={Resources} />
+                        <Route path={'/report-a-case'} component={Report} />
+                        <Route path={'/contact'} component={Contact} />
                     </Switch>
                     <Footer/>
                 </AuthProvider>

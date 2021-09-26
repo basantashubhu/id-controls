@@ -31,17 +31,7 @@ export function AuthProvider({children}) {
         return auth.onAuthStateChanged(user => {
             setCurrentUser(user);
             setLoading(false);
-            if (Object.keys(profile).length && user) {
-                const {serverTimestamp} = firebase.firestore.FieldValue
-                db.collection('users').add({
-                    uid : user.uid,
-                    ...profile,
-                    createdAt : serverTimestamp()
-                }).catch(error => {
-                    console.log({error})
-                })
-                setProfile({})
-            } else if(user) {
+            if(user) {
                 db.collection('users').where('uid', '==', user.uid).onSnapshot(querySnapShot => {
                     querySnapShot.docs.map(x => setProfile(x.data()))
                 })

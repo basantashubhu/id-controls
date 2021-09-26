@@ -1,16 +1,14 @@
-import diseases from '../data/diseases.json'
 import {useEffect, useState} from "react";
+import firebase from "../firebase";
+import {Link} from "react-router-dom";
 
 const Disease = ({match: {params: {id}}}) => {
     const [disease, setDisease] = useState({})
 
     useEffect(() => {
-        for (const dis of diseases.data) {
-            if (dis.disease_code.toString() === id) {
-                setDisease(dis);
-                break;
-            }
-        }
+        return firebase.firestore().collection('diseases').where('id', '==', Number(id)).onSnapshot(snapshot => {
+            snapshot.docs.map(d => setDisease(d.data()));
+        });
     }, [id])
 
     return <section>
@@ -25,7 +23,7 @@ const Disease = ({match: {params: {id}}}) => {
                 <p className="lead mb-4">{disease?.desc?.adult_therapy}</p>
                 <p className="lead mb-4" dangerouslySetInnerHTML={{__html: disease?.desc?.clinical_note?.split('\n').join('<br/>')}}/>
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" className="btn btn-warning btn-lg px-4 gap-3">Report a case</button>
+                    <Link to={`/report-a-case?disease=${disease.id}`} className="btn btn-warning btn-lg px-4 gap-3">Report a case</Link>
                 </div>
             </div>
         </div>
@@ -45,12 +43,12 @@ const Disease = ({match: {params: {id}}}) => {
             {disease?.images?.filter((img, i) => i !== 0).map(({url, alt_text, title, description, source}, i) => (
                 <div key={i}>
                     <div className="row align-items-center">
-                        <div className={`col-md-7 order-${ i % 2 === 0 ? 0 : 1 }`}>
-                            <h2 className="featurette-heading" dangerouslySetInnerHTML={{__html: title}}/>
+                        <div className={`col-md-7 order-1 order-md-${ i % 2 === 0 ? 0 : 1 }`}>
+                            <h2 className="featurette-heading mt-2" dangerouslySetInnerHTML={{__html: title}}/>
                             <p className="lead" dangerouslySetInnerHTML={{__html: description}}/>
                             <p className="mt-5 fst-italic">Source : {source}</p>
                         </div>
-                        <div className={`col-md-5 order-${ i % 2 === 0 ? 1 : 0 }`}>
+                        <div className={`col-md-5 order-0 order-md-${ i % 2 === 0 ? 1 : 0 }`}>
                             <img src={url} alt={alt_text} className={'img-fluid'}/>
                         </div>
                     </div>
