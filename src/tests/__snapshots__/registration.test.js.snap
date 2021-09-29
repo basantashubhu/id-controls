@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test case for registration email check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for registration first name check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for registration last name check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for registration password check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for registration password confirmation check 1`] = `ShallowWrapper {}`;
