@@ -20,3 +20,24 @@ The tools I have used for this project as as shown below and if you do not have 
 * [Postman](https://www.postman.com/downloads/) for API calls
 * [MongoDB](https://www.mongodb.com/try/download/community) for database
 * [NodeJS](https://nodejs.org/en/download/) for creating API and return/receive JSON data
+
+## Installing / Getting started
+First you need to download this project.
+Install NodeJS
+Install MongoDB
+
+After successfully downloading the project open your terminal/command prompt run following commands.
+```
+npm install
+npm start
+```
+Check [localhost:3000](http://localhost:3000)
+
+
+
+### Basanta Tajpuriya
+Coventry ID : 11373591
+Batch No : 25B
+Email-ID : [callmebasanta44@gmail.com](mailto:callmebasanta44@gmail.com)
+
+### Thank You
