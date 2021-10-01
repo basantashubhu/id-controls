@@ -22,9 +22,9 @@ The tools I have used for this project as as shown below and if you do not have 
 * [NodeJS](https://nodejs.org/en/download/) for creating API and return/receive JSON data
 
 ## Installing / Getting started
-First you need to download this project.
-Install NodeJS
-Install MongoDB
+First you need to download this project.  
+Install NodeJS  
+Install MongoDB  
 
 After successfully downloading the project open your terminal/command prompt run following commands.
 ```
@@ -36,8 +36,8 @@ Check [localhost:3000](http://localhost:3000)
 
 
 ### Basanta Tajpuriya
-Coventry ID : 11373591
-Batch No : 25B
-Email-ID : [callmebasanta44@gmail.com](mailto:callmebasanta44@gmail.com)
+Coventry ID : 11373591  
+Batch No : 25B  
+Email-ID : [callmebasanta44@gmail.com](mailto:callmebasanta44@gmail.com)  
 
 ### Thank You
