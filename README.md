@@ -13,3 +13,10 @@ An web application a solution to control infectious diseases spread from insects
 * Resource search and find feature
 * Report a case with just few steps
 * Submit query and contact support team
+
+## Tools Used
+The tools I have used for this project as as shown below and if you do not have such programs you can directly download by clicking on it.
+* [Visual Studio Code](https://code.visualstudio.com/download) as and code editor
+* [Postman](https://www.postman.com/downloads/) for API calls
+* [MongoDB](https://www.mongodb.com/try/download/community) for database
+* [NodeJS](https://nodejs.org/en/download/) for creating API and return/receive JSON data
