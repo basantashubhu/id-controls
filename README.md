@@ -31,10 +31,10 @@ After successfully downloading the project open your terminal/command prompt run
 npm install
 npm start
 ```
-Check [localhost:3000](http://localhost:3000)
-
-
-
+Check [localhost:3000](http://localhost:3000)  
+  
+  
+  
 ### Basanta Tajpuriya
 Coventry ID : 11373591  
 Batch No : 25B  
