@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test case for contact form address check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for contact form disease check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for contact form name check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for contact form submit button check 1`] = `ShallowWrapper {}`;

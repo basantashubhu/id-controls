@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test case for disease detail clinical advise check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for disease detail disease details check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for disease detail disease name check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for disease detail disease report button check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for disease detail guideline check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for disease detail synonym check 1`] = `ShallowWrapper {}`;

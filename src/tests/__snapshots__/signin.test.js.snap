@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test case for login email check 1`] = `ShallowWrapper {}`;
+
+exports[`Test case for login password check 1`] = `ShallowWrapper {}`;
