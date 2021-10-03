@@ -8,11 +8,13 @@ const Report = ({location}) => {
     const [message, setMessage] = useState({type : 'danger', message : ''})
     const [loading, setLoading] = useState(false)
     useEffect(() => {
+        console.log({test : 'demo33'})
         return firebase.firestore().collection('diseases').onSnapshot(snap => {
             setDiseases([...new Set(snap.docs.map(d => d.data()))]);
         });
     }, [diseases.length])
     useEffect(() => {
+        console.log({test : 'demo22'})
         return firebase.firestore().collection('cases').onSnapshot(snap => {
             setAddresses([...new Set(snap.docs.map(c => c.data().address))]);
         });
@@ -40,8 +42,9 @@ const Report = ({location}) => {
     const search = new URLSearchParams(location.search),
         id = search.get('disease') || '';
     useEffect(() => {
+        console.log({test : 'demo11'})
         setFormData({...formData, disease : id})
-    }, [id, formData])
+    }, [id])
     return <main>
         <section className="container">
             <div className="row py-lg-5">

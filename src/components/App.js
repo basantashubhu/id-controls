@@ -4,7 +4,6 @@ import {AuthProvider} from "../contexts/UserContext";
 import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-// import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "../pages/ForgotPassword";
 import Disease from "../pages/Disease";
 import Footer from "./Footer";

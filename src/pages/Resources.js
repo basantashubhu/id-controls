@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Pagination from "../components/Pagination";
 
 const Resources = () => {
     const [cache, setCache] = useState([])
@@ -8,10 +9,7 @@ const Resources = () => {
     const [pagination, setPagination] = useState({
         total : 0,
         currentPage : 1,
-        perPage : 50,
-        lastPage() {
-            return Math.ceil(this.total/this.perPage)
-        }
+        perPage : 50
     })
     useEffect(() => {
         axios.get('https://data.askbhunte.com/api/v1/resources/health').then(response => {
@@ -32,15 +30,6 @@ const Resources = () => {
     }, [pagination.currentPage])
     const goToPage = currentPage => {
         setPagination({...pagination, currentPage})
-    }
-    const pageVisibility = page => {
-        return page >= pagination.currentPage - 4 && page <= pagination.currentPage + 4;
-    }
-    const leftPages = () => {
-        return (pagination.currentPage - 5) < 1;
-    }
-    const rightPages = () => {
-        return (pagination.currentPage + 5) > pagination.lastPage();
     }
     const handleSearch = e => {
         setData(cache.filter(d => d.title.toLowerCase().includes(e.target.value.toLowerCase())))
@@ -83,33 +72,7 @@ const Resources = () => {
                         })}
                         </tbody>
                     </table>
-                    <nav aria-label="...">
-                        <ul className="pagination">
-                            <li className={`page-item ${pagination.currentPage === 1 ? 'disabled' : ''}`}>
-                                <button type="button" className="page-link" onClick={() => goToPage(1)}>&lt;&lt;</button>
-                            </li>
-                            <li className={`page-item ${pagination.currentPage === 1 ? 'disabled' : ''}`}>
-                                <button type="button" className="page-link" onClick={() => goToPage(pagination.currentPage - 1)}>Previous</button>
-                            </li>
-                            <li className={`page-item disabled`} hidden={leftPages()}>
-                                <button type="button" className="page-link">...</button>
-                            </li>
-                            {[...new Array(Math.ceil(pagination.total/pagination.perPage))].map((v,index) => {
-                                return <li key={index} hidden={!pageVisibility(index + 1)} className={`page-item ${(index + 1) === pagination.currentPage ? 'active' : ''}`}>
-                                    <button type="button" className="page-link" onClick={() => goToPage(index + 1)}>{index + 1}</button>
-                                </li>
-                            })}
-                            <li className={`page-item disabled`} hidden={rightPages()}>
-                                <button type="button" className="page-link">...</button>
-                            </li>
-                            <li className={`page-item ${Math.ceil(pagination.total/pagination.perPage) === pagination.currentPage ? 'disabled' : ''}`}>
-                                <button type="button" className="page-link" onClick={() => goToPage(pagination.currentPage + 1)}>Next</button>
-                            </li>
-                            <li className={`page-item ${Math.ceil(pagination.total/pagination.perPage) === pagination.currentPage ? 'disabled' : ''}`}>
-                                <button type="button" className="page-link" onClick={() => goToPage(Math.ceil(pagination.total/pagination.perPage))}>&gt;&gt;</button>
-                            </li>
-                        </ul>
-                    </nav>
+                    <Pagination pagination={pagination} handlePageChange={goToPage} />
                 </div>
             </div>
         </section>
