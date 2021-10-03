@@ -32,6 +32,8 @@ npm install
 npm start
 ```
 Check [localhost:3000](http://localhost:3000)  
+[https://youtu.be/NHdf290M1JI](https://youtu.be/NHdf290M1JI)  
+<br />
   
   
   
